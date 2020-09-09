@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS venues;
+
+CREATE TABLE venues (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  venue_name TEXT NOT NULL, 
+  artist_name TEXT NOT NULL, 
+  scheduled_time TEXT NOT NULL 
+);
