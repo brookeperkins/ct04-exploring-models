@@ -49,6 +49,54 @@ describe('Venue model', () => {
     const createdVenue = await Venue.findById(666);
     expect(createdVenue).toEqual(null);
   });
-
   
+  it('finds all venues', async() => {
+    await Promise.all([
+      Venue.insert({
+        venueName: 'Moda Center',
+        artistName: 'Neil Diamond',
+        scheduledTime: '03-24-20 at 7:00 PM'
+      }),
+      Venue.insert({
+        venueName: 'Mississippi Studios',
+        artistName: 'Big Business',
+        scheduledTime: '03-20-20 at 7:00 PM'
+      }),
+
+      Venue.insert({
+        venueName: 'Moda Center',
+        artistName: 'Tool',
+        scheduledTime: '04-24-20 at 9:00 PM'
+      })
+
+
+    ]);
+
+    const venues = await Venue.find();
+
+    expect(venues).toEqual(expect.arrayContaining([
+      {  id: expect.any(String),
+        venueName: 'Moda Center',
+        artistName: 'Neil Diamond',
+        scheduledTime: '03-24-20 at 7:00 PM' 
+      },
+      {  id: expect.any(String),
+        venueName: 'Mississippi Studios',
+        artistName: 'Big Business',
+        scheduledTime: '03-20-20 at 7:00 PM' 
+      },
+      {  id: expect.any(String),
+        venueName: 'Moda Center',
+        artistName: 'Tool',
+        scheduledTime: '04-24-20 at 9:00 PM' 
+      }
+
+
+
+
+    ]));
+
+  });
+
+
 });
