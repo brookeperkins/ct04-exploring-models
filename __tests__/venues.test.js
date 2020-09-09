@@ -23,5 +23,29 @@ describe('Venue model', () => {
       scheduledTime: '03-24-20 at 7:00 PM'
     });
   });
-  
+
+
+
+  it('finds a venue by id', async() => {
+    const createdVenue = await Venue.insert({
+      venueName: 'Moda Center',
+      artistName: 'Neil Diamond',
+      scheduledTime: '03-24-20 at 7:00 PM'
+
+    });
+   
+    const foundVenue = await Venue.findById(createdVenue.id);
+    
+    expect(foundVenue).toEqual({
+      id: createdVenue.id,
+      venueName: 'Moda Center',
+      artistName: 'Neil Diamond',
+      scheduledTime: '03-24-20 at 7:00 PM'
+
+    });
+
+   
+      
+    
+  });
 });
