@@ -43,9 +43,12 @@ describe('Venue model', () => {
       scheduledTime: '03-24-20 at 7:00 PM'
 
     });
-
-   
-      
-    
   });
+
+  it('it returns null if it cannot find a venue by id', async() => {
+    const createdVenue = await Venue.findById(666);
+    expect(createdVenue).toEqual(null);
+  });
+
+  
 });
