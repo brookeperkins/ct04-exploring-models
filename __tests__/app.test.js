@@ -24,6 +24,25 @@ describe('04-exploring-models routes', () => {
     });
   });
 
+  it('gets a Venue by id via GET', async() => {
+    const createdVenue = await Venue.insert({
+      venueName: 'Moda Center',
+      artistName: 'Neil Diamond',
+      scheduledTime: '03-24-20 at 7:00 PM'
+    });
+
+    const response = await request(app)
+      .get(`/api/venues/${createdVenue.id}`);
+
+    expect(response.body).toEqual({
+      id: createdVenue.id,
+      venueName: 'Moda Center',
+      artistName: 'Neil Diamond',
+      scheduledTime: '03-24-20 at 7:00 PM'
+    });
+
+  })
+
   it('deletes a Venue by id via delete', async() => {
     const createdVenue = await Venue.insert({
       venueName: 'Moda Center',
