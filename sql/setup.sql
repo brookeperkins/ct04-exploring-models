@@ -1,8 +1,16 @@
-DROP TABLE IF EXISTS venues;
+DROP TABLE IF EXISTS venues CASCADE;
+DROP TABLE IF EXISTS concerts CASCADE;
 
 CREATE TABLE venues (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   venue_name TEXT NOT NULL, 
   artist_name TEXT NOT NULL, 
   scheduled_time TEXT NOT NULL 
+);
+
+CREATE TABLE concerts (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  venue_id BIGINT REFERENCES venues(id), 
+  artist_name TEXT NOT NULL, 
+  rescheduled_time TEXT NOT NULL 
 );
