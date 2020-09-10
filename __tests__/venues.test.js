@@ -1,7 +1,7 @@
 const fs = require('fs');
 const Venue = require('../lib/models/venues');
 const pool = require('../lib/utils/pool');
-const { create } = require('domain');
+// const { create } = require('domain');
 
 describe('Venue model', () => {
   beforeEach(() => {
@@ -91,10 +91,6 @@ describe('Venue model', () => {
         artistName: 'Tool',
         scheduledTime: '04-24-20 at 9:00 PM' 
       }
-
-
-
-
     ]));
 
   });
@@ -117,7 +113,6 @@ describe('Venue model', () => {
       venueName: 'Moda Center',
       artistName: 'Neil Diamond',
       scheduledTime: '04-20-21 at 7:00 PM'
-
     });
 
   
