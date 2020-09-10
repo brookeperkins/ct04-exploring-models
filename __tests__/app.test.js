@@ -41,7 +41,7 @@ describe('04-exploring-models routes', () => {
       scheduledTime: '03-24-20 at 7:00 PM'
     });
 
-  })
+  });
 
   it('deletes a Venue by id via delete', async() => {
     const createdVenue = await Venue.insert({
