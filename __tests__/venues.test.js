@@ -1,6 +1,7 @@
 const fs = require('fs');
 const Venue = require('../lib/models/venues');
 const pool = require('../lib/utils/pool');
+const { create } = require('domain');
 
 describe('Venue model', () => {
   beforeEach(() => {
@@ -96,6 +97,30 @@ describe('Venue model', () => {
 
     ]));
 
+  });
+  it('updates a row by id', async() => {
+
+    const createdVenue = await Venue.insert({
+      venueName: 'Moda Center',
+      artistName: 'Neil Diamond',
+      scheduledTime: '03-24-20 at 7:00 PM'
+
+    });
+    const updatedVenue = await Venue.update(createdVenue.id, { 
+      venueName: 'Moda Center',
+      artistName: 'Neil Diamond',
+      scheduledTime: '04-20-21 at 7:00 PM'
+    });
+
+    expect(updatedVenue).toEqual({
+      id: createdVenue.id,
+      venueName: 'Moda Center',
+      artistName: 'Neil Diamond',
+      scheduledTime: '04-20-21 at 7:00 PM'
+
+    });
+
+  
   });
 
 
