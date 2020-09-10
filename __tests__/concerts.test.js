@@ -63,7 +63,14 @@ describe('Concert model', () => {
     expect(createdConcert).toEqual(null);
   });
   
+
   it('finds all venues', async() => {
+    const venue = await Venue.insert({
+      venueName: 'Moda Center',
+      artistName: 'Neil Diamond',
+      scheduledTime: '03-24-20 at 7:00 PM'
+    });
+
     await Promise.all([
       Concert.insert({
         venueId: venue.id,
@@ -81,8 +88,6 @@ describe('Concert model', () => {
         artistName: 'Tool',
         rescheduledTime: '04-24-21 at 9:00 PM'
       })
-
-
     ]);
 
     const venues = await Concert.find();
@@ -106,6 +111,8 @@ describe('Concert model', () => {
     ]));
 
   });
+
+  
   it('updates a row by id', async() => {
 
     const createdConcert = await Concert.insert({
