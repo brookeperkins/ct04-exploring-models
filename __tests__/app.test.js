@@ -43,6 +43,33 @@ describe('04-exploring-models routes', () => {
 
   });
 
+
+  it('updates a venue via PUT', async() => {
+    const createdVenue = await Venue.insert({
+      venueName: 'Moda Center',
+      artistName: 'Neil Diamond',
+      scheduledTime: '03-24-20 at 7:00 PM'
+    });
+
+    const updatedVenue = {
+      venueName: 'Moda Center',
+      artistName: 'Tool',
+      scheduledTime: '03-24-20 at 7:00 PM'
+    };
+    const response = await request(app)
+      .put(`/api/venues/${createdVenue.id}`)
+      .send(updatedVenue);
+
+    expect(response.body).toEqual({
+      id: createdVenue.id,
+      venueName: 'Moda Center',
+      artistName: 'Tool',
+      scheduledTime: '03-24-20 at 7:00 PM'
+    });
+
+  });
+
+
   it('deletes a Venue by id via delete', async() => {
     const createdVenue = await Venue.insert({
       venueName: 'Moda Center',
