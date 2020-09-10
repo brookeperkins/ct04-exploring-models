@@ -112,8 +112,13 @@ describe('Concert model', () => {
 
   });
 
-  
+
   it('updates a row by id', async() => {
+    const venue = await Venue.insert({
+      venueName: 'Moda Center',
+      artistName: 'Neil Diamond',
+      scheduledTime: '03-24-20 at 7:00 PM'
+    });
 
     const createdConcert = await Concert.insert({
       venueId: venue.id,
@@ -138,21 +143,26 @@ describe('Concert model', () => {
   });
 
   it('deletes a row by id', async() => {
+    const venue = await Venue.insert({
+      venueName: 'Moda Center',
+      artistName: 'Neil Diamond',
+      scheduledTime: '03-24-20 at 7:00 PM'
+    });
+
     const createdConcert = await Concert.insert({
       venueId: venue.id,
       artistName: 'Neil Diamond',
       rescheduledTime: '03-24-21 at 7:00 PM'
     });
+
     const deletedConcert = await Concert.delete(createdConcert.id);
+
     expect(deletedConcert).toEqual({
       id: createdConcert.id,
       venueId: venue.id,
       artistName: 'Neil Diamond',
       rescheduledTime: '03-24-21 at 7:00 PM'
-
     });
-
-
   });
 
 });
