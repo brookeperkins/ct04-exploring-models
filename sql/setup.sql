@@ -14,3 +14,4 @@ CREATE TABLE concerts (
   artist_name TEXT NOT NULL, 
   rescheduled_time TEXT NOT NULL 
 );
+
